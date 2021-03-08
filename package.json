@@ -1,34 +1,34 @@
 {
-	"name": "react-native-gpgs",
-	"version": "1.0.2",
-	"description": "React Native Google Play Games Services for Android.",
-	"homepage": "https://github.com/rogerwilliamsio/react-native-gpgs.git",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/rogerwilliamsio/react-native-gpgs.git"
-	},
-	"bugs": {
-		"url": "https://github.com/rogerwilliamsio/react-native-gpgs/issues"
-	},
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [
-		"react-native",
-		"google play games services android",
-		"google play games services",
-		"google play",
-		"google play games",
-		"android games"
-	],
-	"author": "Roger Williams",
-	"contributors": [
-		"Sagar Gulati (https://sagargulati.com)"
-	],
-	"license": "MIT",
-	"peerDependencies": {
-		"react-native": "*",
-		"react": "*"
-	}
+  "name": "react-native-gpgs",
+  "version": "1.0.2",
+  "description": "React Native Google Play Games Services for Android.",
+  "homepage": "https://github.com/rogerwilliamsio/react-native-gpgs.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rogerwilliamsio/react-native-gpgs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rogerwilliamsio/react-native-gpgs/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "google play games services android",
+    "google play games services",
+    "google play",
+    "google play games",
+    "android games"
+  ],
+  "author": "Roger Williams",
+  "contributors": [
+    "Sagar Gulati (https://sagargulati.com)"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": "*",
+    "react": "*"
+  }
 }
