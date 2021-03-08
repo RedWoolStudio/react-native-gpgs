@@ -24,7 +24,8 @@
 	],
 	"author": "Roger Williams",
 	"contributors": [
-		"Sagar Gulati (https://sagargulati.com)"
+		"Sagar Gulati (https://sagargulati.com)",
+		"Sayak Brahmachari"
 	],
 	"license": "MIT",
 	"peerDependencies": {
