@@ -79,24 +79,35 @@ public class RNGPGSAuth extends ReactContextBaseJavaModule {
   public void signInPlayerInBackground(final boolean triggerUI,
                                        final Promise promise) {
     if (!this.isSignedIn()) {
-      this.getSignInClient().silentSignIn().addOnCompleteListener(
-          getCurrentActivity(), new OnCompleteListener<GoogleSignInAccount>() {
-            @Override
-            public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
-              if (task.isSuccessful()) {
-                Helpers.sendAuthStateChangedEvent(getReactApplicationContext(),
-                                                  true);
-                Helpers.resolvePromise(promise);
-              } else if (triggerUI) {
-                Log.d(TAG, "Failed to sign in silently, trying UI.");
-                // Player will need to sign-in explicitly via UI
-                signInPlayerWithUI(promise);
-              } else {
-                Helpers.rejectPromise(promise,
-                                      new Exception("Sign in failed."));
+      Activity activity = getCurrentActivity();
+      if (activity == null) {
+        Helpers.rejectPromise(promise, new RuntimeException("Activity not found"));
+      } else {
+        activity.runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            this.getSignInClient().silentSignIn().addOnCompleteListener(
+              getCurrentActivity(), new OnCompleteListener<GoogleSignInAccount>() {
+                @Override
+                public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
+                  if (task.isSuccessful()) {
+                    Helpers.sendAuthStateChangedEvent(getReactApplicationContext(),
+                                                      true);
+                    Helpers.resolvePromise(promise);
+                  } else if (triggerUI) {
+                    Log.d(TAG, "Failed to sign in silently, trying UI.");
+                    // Player will need to sign-in explicitly via UI
+                    signInPlayerWithUI(promise);
+                  } else {
+                    Helpers.rejectPromise(promise,
+                                          new Exception("Sign in failed."));
+                  }
+                }
               }
-            }
-          });
+            );
+          }
+        });
+      }
     } else {
       Helpers.sendAuthStateChangedEvent(getReactApplicationContext(), true);
       Helpers.resolvePromise(promise);
