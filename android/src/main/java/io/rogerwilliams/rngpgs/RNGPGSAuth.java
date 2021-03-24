@@ -149,7 +149,7 @@ public class RNGPGSAuth extends ReactContextBaseJavaModule {
               }
             }
           });
-          }
+          });
           }
     } else {
       Helpers.resolvePromise(promise);
