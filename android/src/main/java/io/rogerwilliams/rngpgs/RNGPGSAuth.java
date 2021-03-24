@@ -83,9 +83,7 @@ public class RNGPGSAuth extends ReactContextBaseJavaModule {
       if (activity == null) {
         Helpers.rejectPromise(promise, new RuntimeException("Activity not found"));
       } else {
-        activity.runOnUiThread(new Runnable() {
-          @Override
-          public void run() {
+        activity.runOnUiThread(() -> {
             this.getSignInClient().silentSignIn().addOnCompleteListener(
               getCurrentActivity(), new OnCompleteListener<GoogleSignInAccount>() {
                 @Override
@@ -105,7 +103,6 @@ public class RNGPGSAuth extends ReactContextBaseJavaModule {
                 }
               }
             );
-          }
         });
       }
     } else {
