@@ -130,6 +130,11 @@ public class RNGPGSAuth extends ReactContextBaseJavaModule {
   @ReactMethod
   public void signOutPlayer(final Promise promise) {
     if (this.isSignedIn()) {
+      Activity activity = getCurrentActivity();
+      if (activity == null) {
+        Helpers.rejectPromise(promise, new RuntimeException("Activity not found"));
+      } else {
+        activity.runOnUiThread(() -> {
       this.getSignInClient().signOut().addOnCompleteListener(
           getCurrentActivity(), new OnCompleteListener<Void>() {
             @Override
@@ -144,6 +149,8 @@ public class RNGPGSAuth extends ReactContextBaseJavaModule {
               }
             }
           });
+          }
+          }
     } else {
       Helpers.resolvePromise(promise);
     }
